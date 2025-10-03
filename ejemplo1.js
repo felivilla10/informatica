@@ -1,5 +1,8 @@
-let parrafo= document.getElementsById("texto");
-let boton= document.getElementById("btn");
+let contador = 1;
+let boton = document.getElementById("btnbajar");
+let numero = document.getElementById("conteo");
+
 boton.addEventListener("click", function(){
-    parrafo.innerHTML="hog rider";
+    contador--;
+    numero.textContent = contador;
 });
