@@ -10,48 +10,34 @@
 <body>
     <form id="formulario">
         <h1>Registro de usuario</h1>
-        <label for="nombre">Escribe tu nombre</label>
-        <input type="text" id="nombre" name="nombre" required><br><br>
-         <label for="correo">Correo electronico</label>
-         <input type="email" id="correo" name="correo" required><br><br>
-         <label for="clave">Contraseña</label>
-         <input type="password" id="clave" name="clave" required><br><br>
-         <label for="fecha">Fecha de nacimiento</label>
-         <input type="date" id="fecha" name="fecha" required><br><br>
-         <fieldset>
-            <legend>Aficiones</legend>
-            <input type="checkbox" id="deporte" name="Aficiones" value="deporte">
-            <label for="deporte">Deportes</label>
-            <input type="checkbox" id="musica" name="Aficiones" value="musica">
-            <label for="musica">Música</label>
-            <input type="checkbox" id="lectura" name="Aficiones" value="lectura">
-            <label for="lectuta">Lectura</label>
-            <input type="checkbox" id="arte" name="Aficiones" value="arte">
-            <label for="arte">Arte</label><br><br>
-            </fieldset>
-            <button type="submit">Enviar</button>
-                <button type="reset">Borrar</button>    
+        <label for="nota1">Escribe tu nota N°1</label>
+        <input type="number" id="nota1" name="nota" required><br><br>
+         <label for="correo">Nota N°2</label>
+         <input type="number" id="nota2" name="nota" required><br><br>
+         <label for="clave">Nota N°3</label>
+         <input type="number" id="nota3" name="nota" required><br><br>
+         
     </form>
     <script>
-        document.getElementById("formulario").addEventListener("submit", function(event) {
+        document.getElementById("formulario").addEventListener("submit", function(event)){
+        {
         event.preventDefault();
-        const fechaInput = document.getElementById("fecha").value;
-        const fechaNacimiento = new Date(fechaInput);
-        const hoy = new Date();
-        //Calcular edad
-        let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-        let cumpleEsteAño = new Date(hoy.getFullYear(), fechaNacimiento.getMonth(), fechaNacimiento.getDate());
-        if (hoy < cumpleEsteAño) {
-        edad--; // Aún no cumplió años este año
+        function calcular(){ 
+    let num1 = prompt("Ingresa el primer número:");
+    let num2 = prompt("Ingresa el segundo número:");
+    let num3 = prompt("Ingresa el tercer número:");
+    num1 = Number(num1);
+    num2 = Number(num2);
+    num3 = Number(num3);
+    if (!isNaN(num1) && !isNaN(num2) && !isNaN(num3)) {
+    let suma = (num1 + num2 + num3) / 3; 
+    alert("Resultado: " + suma);
+} else {
+    alert("Ingrese solo numeros.");
+}
+}
         }
-        //Calcular días hasta el próximo cumpleaños
-        if (hoy > cumpleEsteAño) {
-        cumpleEsteAño.setFullYear(hoy.getFullYear() + 1);
-        }
-        let diferenciaMs = cumpleEsteAño - hoy;
-        let diasRestantes = Math.ceil(diferenciaMs / (1000 * 60 * 60 * 24));
-        alert(`Tu edad es: ${edad} años.\nFaltan ${diasRestantes} días para tu próximo cumpleaños`);
-       });
+    }
        </script> 
 </body>
 </html>
