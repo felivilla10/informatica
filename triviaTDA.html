@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- ESTILOS PARA EL MODAL-->
+<style>
+    .modal {
+     display: none; /* oculto hasta abrir */
+     position: fixed;
+     left: 0; top: 0;
+     width: 100%; height: 100%;
+     background-color: rgba(0,0,0,0.5);
+     z-index: 1000;
+    }
+    .modal-contenido {
+     background: white;
+     margin: 5% auto;
+     padding: 20px;
+     border-radius: 10px;
+     max-width: 600px;
+     max-height: 80vh;
+     overflow-y: auto;
+    }
+    .cerrar { float: right; cursor: pointer; font-size: 24px; }
+    </style> 
+    
+</head>
+<body>
+    <!-- SECCIÓN PARA JUGAR TRIVIA -->
+<section id="jugar-trivia">
+    <h2>¿Te animas a poner a prueba tus conocimientos?</h2>
+    <button id="abrirTrivia">Comenzar Trivia</button>
+    </section>
+    <!-- MODAL -->
+    <div id="modalTrivia" class="modal">
+     <div class="modal-contenido">
+     <span class="cerrar">&times;</span>
+     <!-- Aquí irá el formulario y resultados -->
+     <h2>Trivia sobre Santo Tomas de Aquino</h2>
+     <form id="formTrivia">
+      <p><strong>1.</strong> ¿Dónde nació Santo Tomas de Aquino?</p>
+      <label><input type="radio" name="p1" value="Roma"> Roma</label><br>
+      <label><input type="radio" name="p1" value="Roccasseca"> Roccasecca</label><br>
+      <label><input type="radio" name="p1" value="Milan"> Milan</label><br><br>
+      <p><strong>2.</strong> ¿En qué año nació?</p>
+      <label><input type="radio" name="p2" value="1225"> 1225</label><br>
+      <label><input type="radio" name="p2" value="1300"> 1300</label><br>
+      <label><input type="radio" name="p2" value="1250"> 1250</label><br><br>
+      <p><strong>3.</strong> ¿Que era Santo Tomas de Aquino?</p>
+      <label><input type="radio" name="p3" value="Trabajador"> Trabajador</label><br>
+      <label><input type="radio" name="p3" value="Filosofo"> Filosofo</label><br>
+      <label><input type="radio" name="p3" value="Maestro"> Maestro</label><br><br>
+      <p><strong>4.</strong> ¿Cuantos hermanos tenia?</p>
+      <label><input type="radio" name="p4" value="5"> 5</label><br>
+      <label><input type="radio" name="p4" value="No tenia"> No tenia</label><br>
+      <label><input type="radio" name="p4" value="7"> 7</label><br><br>
+      <p><strong>5.</strong> ¿Cuando murio?</p>
+      <label><input type="radio" name="p5" value="7 de Marzo"> 7 de Marzo</label><br>
+      <label><input type="radio" name="p5" value="9 de Mayo"> 9 de Mayo</label><br>
+      <label><input type="radio" name="p5" value="15 de Abril"> 15 de Abril</label><br><br>
+      <button type="submit">Enviar respuestas</button>
+     </form>
+     <div id="resultado"></div> 
+     </div>
+    </div>
+    <!-- SCRIPT básico para abrir/cerrar el MODAL-->
+<script>
+    const modal = document.getElementById("modalTrivia");
+    const btnAbrir = document.getElementById("abrirTrivia");
+    const btnCerrar = document.querySelector(".cerrar");
+    btnAbrir.onclick = () => { modal.style.display = "block"; };
+    btnCerrar.onclick = () => { modal.style.display = "none"; };
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+    document.getElementById("formTrivia").addEventListener("submit", function(e) {
+ e.preventDefault();
+ // Variable para puntaje
+ let puntaje = 0;
+ let salida = "";
+ // Capturamos la respuesta de la PREGUNTA 1
+ let r1 = document.querySelector('input[name="p1"]:checked');
+ // Validamos
+ if (r1) {
+ if (r1.value === "Roccasecca") {
+ puntaje++;
+ salida += "<p class='correcta'>1.  Correcta</p>";
+ } else {
+ salida += "<p class='incorrecta'>1.  Incorrecta. Correcta: Roccasecca</p>";
+ }
+ } else {
+ salida += "<p class='incorrecta'>1.  No respondida. Correcta: Roccasecca</p>";
+ }
+ // Capturamos la respuesta de la PREGUNTA 1
+ let r2 = document.querySelector('input[name="p2"]:checked');
+ // Validamos
+ if (r2) {
+ if (r2.value === "1225") {
+ puntaje++;
+ salida += "<p class='correcta'>2.  Correcta</p>";
+ } else {
+ salida += "<p class='incorrecta'>2.  Incorrecta. Correcta: 1225</p>";
+ }
+ } else {
+ salida += "<p class='incorrecta'>2.  No respondida. Correcta: 1225</p>";
+ }
+ // Capturamos la respuesta de la PREGUNTA 1
+ let r3 = document.querySelector('input[name="p3"]:checked');
+ // Validamos
+ if (r3) {
+ if (r3.value === "Filosofo") {
+ puntaje++;
+ salida += "<p class='correcta'>3.  Correcta</p>";
+ } else {
+ salida += "<p class='incorrecta'>3.  Incorrecta. Correcta: Filosofo</p>";
+ }
+ } else {
+ salida += "<p class='incorrecta'>3.  No respondida. Correcta: Filosofo</p>";
+ }
+ // Capturamos la respuesta de la PREGUNTA 1
+ let r4 = document.querySelector('input[name="p4"]:checked');
+ // Validamos
+ if (r4) {
+ if (r4.value === "7") {
+ puntaje++;
+ salida += "<p class='correcta'>4.  Correcta</p>";
+ } else {
+ salida += "<p class='incorrecta'>4.  Incorrecta. Correcta: 7</p>";
+ }
+ } else {
+ salida += "<p class='incorrecta'>4.  No respondida. Correcta: 7</p>";
+ }
+ // Capturamos la respuesta de la PREGUNTA 1
+ let r5 = document.querySelector('input[name="p5"]:checked');
+ // Validamos
+ if (r5) {
+ if (r5.value === "7 de Marzo") {
+ puntaje++;
+ salida += "<p class='correcta'>5.  Correcta</p>";
+ } else {
+ salida += "<p class='incorrecta'>5.  Incorrecta. Correcta: 7 de Marzo</p>";
+ }
+ } else {
+ salida += "<p class='incorrecta'>5.  No respondida. Correcta: 7 de Marzo</p>";
+ }
+ // Mostramos el resultado dentro del modal, debajo del formulario
+ salida += `<h4>Puntaje final: ${puntaje} de 5</h4>`;
+ document.getElementById("resultado").innerHTML = salida;
+}); 
+
+    </script>     
+</body>
+</html>
